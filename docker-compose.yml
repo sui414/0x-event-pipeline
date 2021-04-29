@@ -1,21 +1,49 @@
+# version: '3'
+# services:
+#     postgres:
+#         image: postgres:9.6
+#         environment:
+#             - POSTGRES_USER=api
+#             - POSTGRES_PASSWORD=api
+#             - POSTGRES_DB=events
+#             - POSTGRES_PORT=5432
+#         # persist the postgres data to disk so we don't lose it
+#         # on rebuilds.
+#         volumes:
+#             - ./postgres:/var/lib/postgresql/data
+#         ports:
+#             - '5432:5432'
+#     event-pipeline:
+#         depends_on:
+#             - postgres
+#         build:
+#             context: .
+#             dockerfile: event-pipeline/Dockerfile
+#         restart: always
+#         environment:
+#             ETHEREUM_RPC_URL: '${ETHEREUM_RPC_URL}'
+#             CHAIN_ID: '${CHAIN_ID}'
+#             POSTGRES_URI: 'postgres://api:api@postgres/events'
+
+
 version: '3'
 services:
-    postgres:
-        image: postgres:9.6
-        environment:
-            - POSTGRES_USER=api
-            - POSTGRES_PASSWORD=api
-            - POSTGRES_DB=events
-            - POSTGRES_PORT=5432
-        # persist the postgres data to disk so we don't lose it
-        # on rebuilds.
-        volumes:
-            - ./postgres:/var/lib/postgresql/data
-        ports:
-            - '5432:5432'
+    # postgres:
+    #     image: "slippage-wtf.cvxlbgbyqijo.us-east-1.rds.amazonaws.com:5432/postgres"
+    #     environment:
+    #         - POSTGRES_USER=vitalik
+    #         - POSTGRES_PASSWORD=*W51GVG0X3av$I*FJOo7CQSDWcYRU1u
+    #         - POSTGRES_DB=postgres
+    #         - POSTGRES_PORT=5432
+    #     # persist the postgres data to disk so we don't lose it
+    #     # on rebuilds.
+    #     volumes:
+    #         - ./postgres:/var/lib/postgresql/data
+    #     ports:
+    #         - '5432:5432'
     event-pipeline:
-        depends_on:
-            - postgres
+        # depends_on:
+        #     - postgres
         build:
             context: .
             dockerfile: event-pipeline/Dockerfile
@@ -23,27 +51,4 @@ services:
         environment:
             ETHEREUM_RPC_URL: '${ETHEREUM_RPC_URL}'
             CHAIN_ID: '${CHAIN_ID}'
-            POSTGRES_URI: 'postgres://api:api@postgres/events'
-    event-pipeline-bsc:
-        depends_on:
-            - postgres
-        build:
-            context: .
-            dockerfile: event-pipeline-bsc/Dockerfile
-        restart: always
-        environment:
-            # ETHEREUM_RPC_URL: '${ETHEREUM_RPC_URL_BSC}'
-            ETHEREUM_RPC_URL: 'https://bsc-dataseed.binance.org/'
-            CHAIN_ID: '56'
-            POSTGRES_URI: 'postgres://api:api@postgres/events'
-    staking-api:
-        depends_on:
-            - event-pipeline
-        build:
-            context: .
-            dockerfile: staking-api/Dockerfile
-        restart: always
-        environment:
-            POSTGRES_URI: 'postgres://api:api@postgres/events'
-        ports:
-            - '4000:4000'
+            POSTGRES_URI: '${POSTGRES_URI}'

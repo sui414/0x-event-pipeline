@@ -14,6 +14,7 @@ import {
     FillEvent,
     V4CancelEvent,
     ExpiredRfqOrderEvent,
+    OneInchSwappedEvent,
 } from '../entities';
 
 import { ETHEREUM_RPC_URL, FIRST_SEARCH_BLOCK } from '../config';
@@ -35,6 +36,14 @@ import {
     NEWBRIDGEFILL_EVENT_TOPIC,
     NEW_BRIDGEFILL_BLOCK,
     FLASHWALLET_ADDRESS,
+    ONEINCH_FIRST_BLOCK,
+    ONEINCH_SWAPPED_EVENT_1_TOPIC,
+    ONEINCH_SWAPPED_EVENT_2_TOPIC,
+    ONEINCH_SWAPPED_EVENT_3_TOPIC,
+    ONEINCH_CONTRACT_ADDRESS_1,
+    ONEINCH_CONTRACT_ADDRESS_2,
+    ONEINCH_CONTRACT_ADDRESS_3
+
 } from '../constants';
 
 import { parseTransformedERC20Event } from '../parsers/events/transformed_erc20_events';
@@ -52,6 +61,7 @@ import { parseFillEvent } from '../parsers/events/fill_events';
 import { parseNativeFillFromFillEvent } from '../parsers/events/fill_events';
 import { parseV4CancelEvent } from '../parsers/events/v4_cancel_events';
 import { parseExpiredRfqOrderEvent } from '../parsers/events/expired_rfq_order_events';
+import { parse1InchSwapped1Event,parse1InchSwapped2Event,parse1InchSwapped3Event } from '../parsers/events/oneinch_swapped_events';
 
 import { PullAndSaveEventsByTopic } from './utils/event_abi_utils';
 
@@ -200,6 +210,42 @@ export class EventsByTopicScraper {
                 EXCHANGE_PROXY_ADDRESS,
                 MULTIPLEX_START_BLOCK,
                 parseExpiredRfqOrderEvent,
+                {},
+            ),
+            pullAndSaveEventsByTopic.getParseSaveEventsByTopic<OneInchSwappedEvent>(
+                connection,
+                web3Source,
+                latestBlockWithOffset,
+                'OneInchSwappedEvent_1',
+                'oneinch_swapped_events',
+                ONEINCH_SWAPPED_EVENT_1_TOPIC,
+                ONEINCH_CONTRACT_ADDRESS_1,
+                ONEINCH_FIRST_BLOCK,
+                parse1InchSwapped1Event,
+                {},
+            ),
+            pullAndSaveEventsByTopic.getParseSaveEventsByTopic<OneInchSwappedEvent>(
+                connection,
+                web3Source,
+                latestBlockWithOffset,
+                'OneInchSwappedEvent_2',
+                'oneinch_swapped_events',
+                ONEINCH_SWAPPED_EVENT_2_TOPIC,
+                ONEINCH_CONTRACT_ADDRESS_2,
+                ONEINCH_FIRST_BLOCK,
+                parse1InchSwapped2Event,
+                {},
+            ),
+            pullAndSaveEventsByTopic.getParseSaveEventsByTopic<OneInchSwappedEvent>(
+                connection,
+                web3Source,
+                latestBlockWithOffset,
+                'OneInchSwappedEvent_3',
+                'oneinch_swapped_events',
+                ONEINCH_SWAPPED_EVENT_3_TOPIC,
+                ONEINCH_CONTRACT_ADDRESS_3,
+                ONEINCH_FIRST_BLOCK,
+                parse1InchSwapped3Event,
                 {},
             ),
         ]);

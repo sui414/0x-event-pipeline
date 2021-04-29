@@ -12,6 +12,7 @@ import {
     V4CancelEvent as V4CancelEventTemplate,
     V4LimitOrderFilledEvent as V4LimitOrderFilledEventTemplate,
     V4RfqOrderFilledEvent as V4RfqOrderFilledEventTemplate,
+
 } from '@0x/pipeline-utils';
 import { Entity } from 'typeorm';
 
@@ -32,6 +33,8 @@ export { EpochFinalizedEvent } from './epoch_finalized_event';
 export { RewardsPaidEvent } from './rewards_paid_event';
 export { StakingProxyDeployment } from './staking_proxy_deployment';
 export { TransactionExecutionEvent } from './transaction_execution_event';
+export { OneInchSwappedEvent } from './one_inch_swapped_event';
+
 
 @Entity({ name: 'blocks', schema: 'events' })
 export class Block extends BlockTemplate {}

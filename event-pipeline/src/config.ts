@@ -63,7 +63,7 @@ function bridgeEnvVarToObject(envVar: string): BridgeContract[] {
 
 // The earlier of the exchange or staking contract being created
 const firstSearchBlockMap: { [chainId: number]: number } = {
-    1: 8952139,
+    1: 12330899, //8952139,
     3: 6659261,
     4: 5339071,
     42: 14425606,

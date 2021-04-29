@@ -33,6 +33,8 @@ import {
     V4RfqOrderFilledEvent,
     ExpiredRfqOrderEvent,
     V4CancelEvent,
+
+    OneInchSwappedEvent,
 } from './entities';
 
 const entities = [
@@ -66,6 +68,8 @@ const entities = [
     V4RfqOrderFilledEvent,
     ExpiredRfqOrderEvent,
     V4CancelEvent,
+
+    OneInchSwappedEvent,
 ];
 
 const config: ConnectionOptions = {

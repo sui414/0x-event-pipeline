@@ -35,6 +35,16 @@ export const NEWBRIDGEFILL_EVENT_TOPIC = ['0xe59e71a14fe90157eedc866c4f8c767d394
 export const NEW_BRIDGEFILL_BLOCK = 12231666; // first seen block - 1
 export const FLASHWALLET_ADDRESS = '0x22f9dcf4647084d6c31b2765f6910cd85c178c18';
 
+export const ONEINCH_FIRST_BLOCK = 12330899; 
+
+export const ONEINCH_SWAPPED_EVENT_1_TOPIC = ['0xe2cee3f6836059820b673943853afebd9b3026125dab0d774284e6f28a4855be'];
+export const ONEINCH_SWAPPED_EVENT_2_TOPIC = ['0x76af224a143865a50b41496e1a73622698692c565c1214bc862f18e22d829c5e'];
+export const ONEINCH_SWAPPED_EVENT_3_TOPIC = ['0xd6d4f5681c246c9f42c203e287975af1601f8df8035a9251f79aab5c8f09e2f8'];
+
+export const ONEINCH_CONTRACT_ADDRESS_1 = '0x11111254369792b2ca5d084ab5eea397ca8fa48b';
+export const ONEINCH_CONTRACT_ADDRESS_2 = '0x111111125434b319222cdbf8c261674adb56f3ae';
+export const ONEINCH_CONTRACT_ADDRESS_3 = '0x11111112542d85b3ef69ae05771c2dccff4faa26';
+
 export {
     EXPIRED_RFQ_ORDER_ABI,
     LIMIT_ORDER_FILLED_ABI,
@@ -43,6 +53,170 @@ export {
     TRANSFORMED_ERC20_ABI,
     V4_CANCEL_ABI,
 } from '@0x/pipeline-utils';
+
+export const ONEINCH_SWAPPED_1_ABI = {
+
+    "anonymous":false,
+    "inputs":[
+        {
+            "indexed":true,
+            "internalType":"contract IERC20",
+            "name":"fromToken",
+            "type":"address"
+        },
+        {
+            "indexed":true,
+            "internalType":"contract IERC20",
+            "name":"toToken",
+            "type":"address"
+        },
+        {
+            "indexed":true,
+            "internalType":"address",
+            "name":"referrer",
+            "type":"address"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"fromAmount",
+            "type":"uint256"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"toAmount",
+            "type":"uint256"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"referrerFee",
+            "type":"uint256"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"fee",
+            "type":"uint256"
+        }
+    ],
+    "name":"Swapped",
+    "type":"event"
+}
+
+export const ONEINCH_SWAPPED_2_ABI = {
+    "anonymous": false,
+    "inputs": [
+        {
+            "indexed": true,
+            "internalType": "address",
+            "name": "sender",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "internalType": "contract IERC20",
+            "name": "srcToken",
+            "type": "address"
+        },
+        {
+            "indexed": true,
+            "internalType": "contract IERC20",
+            "name": "dstToken",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "dstReceiver",
+            "type": "address"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "spentAmount",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "returnAmount",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "minReturnAmount",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "guaranteedAmount",
+            "type": "uint256"
+        },
+        {
+            "indexed": false,
+            "internalType": "address",
+            "name": "referrer",
+            "type": "address"
+        }
+    ],
+    "name": "Swapped",
+    "type": "event"
+}
+
+export const ONEINCH_SWAPPED_3_ABI = {
+
+    "anonymous":false,
+    "inputs":[
+        {
+            "indexed":false,
+            "internalType":"address",
+            "name":"sender",
+            "type":"address"
+        },
+        {
+            "indexed":false,
+            "internalType":"contract IERC20",
+            "name":"srcToken",
+            "type":"address"
+        },
+        {
+            "indexed":false,
+            "internalType":"contract IERC20",
+            "name":"dstToken",
+            "type":"address"
+        },
+        {
+            "indexed":false,
+            "internalType":"address",
+            "name":"dstReceiver",
+            "type":"address"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"spentAmount",
+            "type":"uint256"
+        },
+        {
+            "indexed":false,
+            "internalType":"uint256",
+            "name":"returnAmount",
+            "type":"uint256"
+        }
+    ],
+    "name":"Swapped",
+    "type":"event"
+}
 
 export const NEW_BRIDGE_FILL_ABI = {
     anonymous: false,
